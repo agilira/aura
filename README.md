@@ -2,8 +2,8 @@
 
 ---
 
-[Gopher](images/golang.png)
-[Aura](images/aura.png)
+![Gopher](images/golang.png)
+![Aura](images/aura.png)
 
 *Aura* is a simple *&* fast build tool written in golang
 
@@ -138,3 +138,4 @@ go env -w GOOS="windows"
 go build
 
 ```
+
