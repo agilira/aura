@@ -19,11 +19,11 @@ func GetVar(name string, target_name string) string {
 		path, _ := os.Getwd()
 		return path
 	default:
-		ret := string(cfg.Vars[name])
-		if strings.TrimSpace(ret) == "" {
-			return os.Getenv(name)
+		ret, exists := cfg.Vars[name]
+		if exists {
+			return string(ret)
 		}
-		return ret
+		return os.Getenv(name)
 	}
 
 }

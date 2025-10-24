@@ -1,0 +1,22 @@
+vars:
+  GO: "go"
+  BINARY: "app"
+
+targets:
+  build:
+    run:
+      - "$GO build -o $BINARY"
+  
+  test:
+    run:
+      - "$GO test ./..."
+  
+  clean:
+    run:
+      - "rm -f $BINARY"
+  
+  run:
+    deps:
+      - build
+    run:
+      - "$BINARY"

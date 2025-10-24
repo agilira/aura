@@ -7,6 +7,15 @@
 
 the tool require `aura.yaml` file in your project to run
 
+**Commands:**
+
+- `aura build -t <targets>` - run build targets
+- `aura list` - show available targets
+- `aura init --template <type>` - create new project
+- `aura clean` - remove build artifacts
+- `aura watch -t <targets>` - watch files and rebuild
+- `aura validate` - check config file
+
 **Variables:**
 
 - you can declare a variable using this syntax
@@ -93,6 +102,17 @@ include:
 
 ```
 
+*Project Templates:*
+
+- Initialize new projects with templates
+
+```bash
+aura init --template go     # Go project
+aura init --template rust   # Rust project  
+aura init --template node   # Node.js project
+aura init --template basic  # Basic C/C++ project
+```
+
 *Very Simple Example:*
 
 ```yaml
@@ -116,12 +136,16 @@ targets:
 *Output:*
 
 ```bash
-PS I:\golang\Aura> .\aura.exe -t start
+PS I:\golang\Aura> aura build -t start
+Building target: start
+Dependency: build
+go build -o aura2.exe
 Usage of aura2.exe:
   -D string
         Working Directory (default ".")
-  -t string
-        Targets to run (comma separated)
+  -c string
+        Configuration file path (default "aura.yaml")
+  -v    Enable verbose output
 ```
 
 *Building:*
@@ -135,6 +159,19 @@ go build
 go env -w GOOS="windows"
 go build
 
+```
+
+*Development:*
+
+```bash
+// run tests
+go test ./...
+
+// run with coverage
+go test -cover ./...
+
+// format code
+go fmt ./...
 ```
 
 

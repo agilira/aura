@@ -17,7 +17,7 @@ func ParseVars(text string, targetname string) string {
 		varname := strings.TrimPrefix(m, "$")
 		varname = strings.Trim(varname, "{}")
 
-		val := GetVar("$"+varname, targetname)
+		val := GetVar(varname, targetname) // Remove the extra "$" prefix
 		if val == "" {
 			fmt.Fprintf(os.Stderr, "[warn] undefined variable %s in target %s\n", m, targetname)
 			continue
