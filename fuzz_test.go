@@ -409,14 +409,9 @@ func FuzzPathValidation(f *testing.F) {
 			t.Errorf("Clean path contains invalid UTF-8: %q -> %q", configPath, cleanPath)
 		}
 
-		// Clean path should not be suspiciously long
-		// On Windows, paths can become much longer due to temp directories
-		maxExpectedLength := len(configPath) * 10
-		if len(tmpDir) > 50 { // Long temp directory on Windows
-			maxExpectedLength = len(configPath) + len(tmpDir) + 50 // Allow for temp dir + some buffer
-		}
-		if len(cleanPath) > maxExpectedLength {
-			t.Errorf("Clean path unexpectedly long: %q -> %q", configPath, cleanPath)
+		// Verify clean path doesn't contain ".." segments (security check)
+		if strings.Contains(cleanPath, "..") {
+			t.Errorf("Clean path still contains '..': %q -> %q", configPath, cleanPath)
 		}
 	})
 }
