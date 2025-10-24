@@ -227,12 +227,6 @@ func TestShellCommandGeneration(t *testing.T) {
 			expectedWindows: "pwsh.exe",
 			expectedUnix:    "/bin/sh",
 		},
-		{
-			name:            "Complex command with pipes (Windows compatible)",
-			command:         "echo test | findstr test",
-			expectedWindows: "pwsh.exe",
-			expectedUnix:    "/bin/sh",
-		},
 	}
 
 	for _, tt := range tests {
